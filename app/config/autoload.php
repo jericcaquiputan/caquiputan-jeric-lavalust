@@ -80,9 +80,9 @@ $autoload['libraries'] = array();
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['helpers'] = array('url', 'file');
+|	$autoload['helpers'] = array('url');
 */
-$autoload['helpers'] = array();
+$autoload['helpers'] = array('url');
 
 /*
 | -------------------------------------------------------------------

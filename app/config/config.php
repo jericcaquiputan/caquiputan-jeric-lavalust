@@ -79,7 +79,13 @@ $config['environment'] = getenv('APP_ENV') ?: 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= '';
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+
+if (str_starts_with($host, 'localhost') || str_starts_with($host, '127.0.0.1')) {
+    $config['base_url'] = 'http://' . $host . '/caquiputan-jeric-lavalust/';
+} else {
+    $config['base_url'] = 'https://' . $host . '/';
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -99,7 +105,7 @@ $config['proxy_enabled']           = FALSE;
 | variable to blank.
 |
 */
-$config['index_page']               = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -348,4 +354,7 @@ $config['csrf_token_name']         = 'csrf_test_name';
 $config['csrf_cookie_name']        = 'csrf_cookie_name';
 $config['csrf_expire']             = 7200;
 $config['csrf_regenerate']         = FALSE;
+
+/* Load registered application middlewares */
+require_once APP_DIR . 'config/middleware.php';
 ?>
