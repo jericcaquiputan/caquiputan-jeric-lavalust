@@ -82,13 +82,13 @@
                 </thead>
                 <tbody>
                 <?php foreach ($users as $user) : ?>
-                    <?php
-                    $id        = is_array($user) ? ($user['id'] ?? '') : ($user->id ?? '');
-                    $firstname = is_array($user) ? ($user['firstname'] ?? '') : ($user->firstname ?? '');
-                    $lastname  = is_array($user) ? ($user['lastname'] ?? '') : ($user->lastname ?? '');
-                    $email     = is_array($user) ? ($user['email'] ?? '') : ($user->email ?? '');
-                    $username  = is_array($user) ? ($user['username'] ?? '') : ($user->username ?? '');
-                    ?>
+                   <?php
+$id        = is_array($user) ? ($user['id'] ?? '') : ($user->id ?? '');
+$firstname = is_array($user) ? ($user['first_name'] ?? '') : ($user->first_name ?? '');
+$lastname  = is_array($user) ? ($user['last_name'] ?? '') : ($user->last_name ?? '');
+$email     = is_array($user) ? ($user['email'] ?? '') : ($user->email ?? '');
+$username  = is_array($user) ? ($user['username'] ?? '') : ($user->username ?? '');
+?>
                     <tr>
                         <td><?= htmlspecialchars((string) $id, ENT_QUOTES, 'UTF-8') ?></td>
                         <td><?= htmlspecialchars((string) $firstname, ENT_QUOTES, 'UTF-8') ?></td>
