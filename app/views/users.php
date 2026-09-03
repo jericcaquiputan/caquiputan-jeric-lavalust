@@ -84,8 +84,8 @@
                 <?php foreach ($users as $user) : ?>
                    <?php
 $id        = is_array($user) ? ($user['id'] ?? '') : ($user->id ?? '');
-$firstname = is_array($user) ? ($user['first_name'] ?? '') : ($user->first_name ?? '');
-$lastname  = is_array($user) ? ($user['last_name'] ?? '') : ($user->last_name ?? '');
+$firstname = is_array($user) ? ($user['firstname'] ?? '') : ($user->firstname ?? '');
+$lastname  = is_array($user) ? ($user['lastname'] ?? '') : ($user->lastname ?? '');
 $email     = is_array($user) ? ($user['email'] ?? '') : ($user->email ?? '');
 $username  = is_array($user) ? ($user['username'] ?? '') : ($user->username ?? '');
 ?>
