@@ -183,6 +183,23 @@ $database['main'] = array(
 $config['base_url'] = 'http://localhost:3000/';
 ```
 
+### Render and Aiven environment variables
+
+Set these variables in the Render service environment. Do not commit a `.env` file or database credentials:
+
+```text
+APP_ENV=production
+DB_HOST=<Aiven host>
+DB_PORT=<Aiven port>
+DB_NAME=<database name>
+DB_USERNAME=<database user>
+DB_PASSWORD=<database password>
+DB_SSL_CA=/etc/secrets/aiven-ca.pem
+DB_SSL_VERIFY=true
+```
+
+`DB_SSL_CA` is optional for local development and enables PDO MySQL certificate verification when an Aiven CA file is mounted by the deployment. Run the LavaLust migration command used by your deployment process so `004_create_products_table.php` creates the `products` table before opening `/products`. Product routes require a successful session login at `/login`.
+
 ---
 
 ## Building a REST API

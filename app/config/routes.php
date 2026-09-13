@@ -53,4 +53,22 @@ $router->get(
     'StudentController::profile'
 )->middleware('student');
 
-$router->get('/', 'UsersController::index');
+$router->get('/', 'AuthController::login');
+$router->get('/users/create', 'UsersController::create');
+$router->post('/users/store', 'UsersController::store');
+$router->get('/users/edit/{id}', 'UsersController::edit');
+$router->post('/users/update/{id}', 'UsersController::update');
+$router->post('/users/delete/{id}', 'UsersController::delete');
+
+$router->get('/login', 'AuthController::login');
+$router->post('/login', 'AuthController::authenticate');
+$router->post('/logout', 'AuthController::logout');
+
+$router->group(['middleware' => 'auth'], function ($router) {
+    $router->get('/products', 'ProductController::index');
+    $router->get('/products/create', 'ProductController::create');
+    $router->post('/products/store', 'ProductController::store');
+    $router->get('/products/edit/{id}', 'ProductController::edit');
+    $router->post('/products/update/{id}', 'ProductController::update');
+    $router->post('/products/delete/{id}', 'ProductController::delete');
+});

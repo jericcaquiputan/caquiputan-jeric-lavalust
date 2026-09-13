@@ -31,6 +31,38 @@
             margin: 0;
             color: #6b7280;
         }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .button, .link-button {
+            display: inline-block;
+            border: 0;
+            border-radius: 6px;
+            padding: 10px 14px;
+            background: #2563eb;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .button.danger {
+            background: #dc2626;
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .actions form {
+            margin: 0;
+        }
+        .actions .edit {
+            color: #2563eb;
+            text-decoration: none;
+        }
         .table-wrap {
             overflow-x: auto;
         }
@@ -65,7 +97,8 @@
 <div class="container">
     <div class="header">
         <h1>Users</h1>
-        <p>Records retrieved dynamically from the <strong>users</strong> table.</p>
+        <p>Manage records in the <strong>users</strong> table.</p>
+        <a class="link-button" href="/users/create">Add user</a>
     </div>
 
     <?php if (!empty($users)) : ?>
@@ -78,6 +111,7 @@
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Username</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -95,6 +129,12 @@ $username  = is_array($user) ? ($user['username'] ?? '') : ($user->username ?? '
                         <td><?= htmlspecialchars((string) $lastname, ENT_QUOTES, 'UTF-8') ?></td>
                         <td><?= htmlspecialchars((string) $email, ENT_QUOTES, 'UTF-8') ?></td>
                         <td><?= htmlspecialchars((string) $username, ENT_QUOTES, 'UTF-8') ?></td>
+                        <td class="actions">
+                            <a class="edit" href="/users/edit/<?= (int) $id ?>">Edit</a>
+                            <form method="post" action="/users/delete/<?= (int) $id ?>" onsubmit="return confirm('Delete this user?');">
+                                <button class="button danger" type="submit">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
