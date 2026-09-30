@@ -72,3 +72,16 @@ $router->group(['middleware' => 'auth'], function ($router) {
     $router->post('/products/update/{id}', 'ProductController::update');
     $router->post('/products/delete/{id}', 'ProductController::delete');
 });
+
+// Laboratory Exercise 6 JSON API routes. Add to app/config/routes.php.
+$router->options('/api/login', 'ApiAuthController::preflight');
+$router->options('/api/logout', 'ApiAuthController::preflight');
+$router->options('/api/products', 'ApiAuthController::preflight');
+$router->options('/api/products/{id}', 'ApiAuthController::preflight');
+
+$router->post('/api/login', 'ApiAuthController::login');
+$router->post('/api/logout', 'ApiAuthController::logout');
+$router->get('/api/products', 'ApiProductController::index');
+$router->post('/api/products', 'ApiProductController::store');
+$router->put('/api/products/{id}', 'ApiProductController::update');
+$router->delete('/api/products/{id}', 'ApiProductController::delete');
